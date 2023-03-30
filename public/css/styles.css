@@ -1,0 +1,74 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+}
+
+header {
+  background-color: #1db954;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+#search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search{} 
+
+#search {
+  flex-grow: 1;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+}
+
+#counter-container {}
+
+.counter {}
+
+#sort {
+  background-color: #1db954;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+}
+
+#playlists-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.playlist-img {
+  width: 100%;
+  height: auto;
+}
+
+.playlist-title {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+footer {
+  background-color: #1db954;
+  padding: 20px;
+  text-align: center;
+}
