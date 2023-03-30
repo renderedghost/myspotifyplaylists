@@ -16,8 +16,11 @@ const fetchPlaylists = async () => {
 };
 
 const displayPlaylists = (playlists) => {
+  // Sort playlists by title in ascending order
+  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
+
   const counter = document.getElementById('playlist-counter');
-  counter.textContent = `${playlists.items.length} results`;
+  counter.textContent = `Showing ${playlists.items.length} playlists`;
 
   playlistsContainer.innerHTML = '';
   playlists.items.forEach((playlist) => {
@@ -26,11 +29,13 @@ const displayPlaylists = (playlists) => {
     playlistElement.innerHTML = `
       <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
       <p class="playlist-title">${playlist.name}</p>
+      <p class="playlist-tracks">${playlist.tracks.total} songs</p>
     `;
     playlistElement.onclick = () => window.open(playlist.external_urls.spotify, '_blank');
     playlistsContainer.appendChild(playlistElement);
   });
 };
+
 
 const searchPlaylists = (query) => {
   const filteredPlaylists = {

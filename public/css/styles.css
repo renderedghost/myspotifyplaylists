@@ -1,74 +1,106 @@
+:root {
+  /* Color palette */
+  --spotify-black: #191414;
+  --spotify-dark-grey: #1E1E1E;
+  --spotify-light-grey: #a7a7a7;
+  --spotify-green: #1DB954;
+  --spotify-white: #FFFFFF;
+
+  /* Typography */
+  --main-font: 'Circular Std', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  font-family: 'Inter', 'Arial', sans-serif;
+  background-color: var(--spotify-black);
+  color: var(--spotify-white);
   margin: 0;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 header {
-  background-color: #1db954;
-  padding: 20px;
+  background-color: var(--spotify-green);
+  padding: 2rem;
   text-align: center;
 }
 
 main {
-  padding: 20px;
+  padding: 2rem;
 }
 
 #search-container {
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
-
-.search{} 
 
 #search {
   flex-grow: 1;
-  padding: 5px;
-  margin-right: 10px;
-  background-color: #333333;
-  color: #ffffff;
+  padding: 1rem 1.5rem;
+  background-color: var(--spotify-dark-grey);
+  color: var(--spotify-white);
   border: none;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
-#counter-container {}
-
-.counter {}
-
-#sort {
-  background-color: #1db954;
-  color: #ffffff;
-  border: none;
-  padding: 5px;
+#counter-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--spotify-light-grey);
 }
+
+#playlist-counter {}
 
 #playlists-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
 }
 
 .playlist {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   cursor: pointer;
 }
 
 .playlist-img {
   width: 100%;
   height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.playlist-title,
+.playlist-tracks {
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin:0;
 }
 
 .playlist-title {
-  text-align: center;
-  font-size: 1rem;
-  margin-top: 10px;
+  font-weight: 600;
+  color: var(--spotify-white);
+}
+
+.playlist-tracks {
+  color: var(--spotify-light-grey);
 }
 
 footer {
   background-color: #1db954;
-  padding: 20px;
+  padding: 2rem;
   text-align: center;
 }
