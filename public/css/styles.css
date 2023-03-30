@@ -14,6 +14,10 @@
   --font-weight-bold: 700;
 }
 
+:focus {
+  outline: 2px solid var(--spotify-white);
+  outline-offset: 4px;
+}
 
 body {
   font-family: 'Inter', 'Arial', sans-serif;
@@ -27,21 +31,26 @@ body {
 header {
   padding: 2rem;
   text-align: center;
-  background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(0,0,0,1) 50%, rgba(29,185,84,1) 100%);
+  background: var(--spotify-black);
+  background: linear-gradient(0deg, rgba(29,185,84,0) 0%, rgba(29,185,84,0.38) 50%, rgba(29,185,84,1) 100%);
 }
 
 main {
   padding: 2rem;
 }
 
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
 .button {
   padding: 0.5rem 1rem;
   background-color: transparent;
-  border: 1px solid var(--spotify-green);
+  border: 1px solid var(--spotify-white);
   border-radius: 0.25rem;
   box-sizing: border-box;
-  color: var(--spotify-green);
+  color: var(--spotify-white);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: .1em;
@@ -52,8 +61,12 @@ main {
 }
 
 .button:hover {
-  color: var(--spotify-white);
-  border: 1px solid var(--spotify-white);
+  color: var(--spotify-green);
+  border: 1px solid var(--spotify-green);
+}
+
+.button:focus {
+  border: 1px solid var(--spotify-green);
 }
 
 .avatar {
@@ -109,12 +122,19 @@ main {
   flex-direction: column;
   align-items: left;
   cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.playlist:hover {
+  outline: 2px solid var(--spotify-white);
+  outline-offset: 4px;
 }
 
 .playlist-img {
   width: 100%;
   height: auto;
   margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .playlist-title,
@@ -138,9 +158,4 @@ footer {
   background-color: #1db954;
   padding: 2rem;
   text-align: center;
-}
-
-:focus {
-  outline: 2px solid var(--spotify-white);
-  outline-offset: 2px;
 }
