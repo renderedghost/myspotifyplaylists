@@ -155,7 +155,7 @@ h1 {
 }
 
 footer {
-  background-color: #1db954;
+  background-color: var(--spotify-black);
   padding: 2rem;
   text-align: center;
 }
