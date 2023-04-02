@@ -1,7 +1,6 @@
 const userId = '111112791';
 const playlistsContainer = document.getElementById('playlists-container');
 const searchInput = document.getElementById('search');
-const sortBtn = document.getElementById('sort');
 
 let playlists = [];
 
@@ -29,27 +28,14 @@ const displayPlaylists = (playlists) => {
     playlistElement.innerHTML = `
     <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
     <p class="playlist-title">${playlist.name}</p>
-    <p class="playlist-description">${playlist.description}</p>
     <p class="playlist-tracks">${playlist.tracks.total} songs</p>
+    <p class="playlist-followers">${await getPlaylistFollowers(playlist.id)} followers</p>
+    <p class="playlist-description">${playlist.description}</p>
     `;
-
-  // Make an API request to get the playlist details
-    try {
-      const response = await fetch(`/playlists/${userId}/${playlist.id}`);
-      const playlistDetails = await response.json();
-      playlistElement.innerHTML += `
-      <p class="playlist-followers">${playlistDetails.followers.total} followers</p>
-      `;
-    } catch (error) {
-      console.error(error);
-    }
-
     playlistElement.onclick = () => window.open(playlist.external_urls.spotify, '_blank');
     playlistsContainer.appendChild(playlistElement);
   });
-
 };
-
 
 const searchPlaylists = (query) => {
   const filteredPlaylists = {
@@ -60,9 +46,24 @@ const searchPlaylists = (query) => {
   displayPlaylists(filteredPlaylists);
 };
 
-const sortPlaylists = () => {
-  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
-  displayPlaylists(playlists);
+const getPlaylistFollowers = async (playlistId) => {
+  try {
+    const response = await fetch(`/playlists/${userId}/${playlistId}`);
+    const playlistDetails = await response.json();
+    return playlistDetails.followers.total;
+  } catch (error) {
+    console.error(error);
+    return 'N/A';
+  }
+};
+
+const toast = (message) => {
+  const toastContainer = document.getElementById('toast-container');
+  const toastElement = document.createElement('div');
+  toastElement.className = 'toast';
+  toastElement.textContent = message;
+  toastContainer.appendChild(toastElement);
+  setTimeout(() => toastElement.remove(), 3000);
 };
 
 searchInput.addEventListener('input', (event) => {

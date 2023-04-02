@@ -59,7 +59,8 @@ p {
 
 
 
-.button {
+.button,
+.copy-url-button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: 1px solid var(--spotify-white);
@@ -75,12 +76,14 @@ p {
   text-decoration: none;
 }
 
-.button:hover {
+.button:hover,
+.copy-url-button:hover {
   color: var(--spotify-green);
   border: 1px solid var(--spotify-green);
 }
 
-.button:focus {
+.button:focus,
+.copy-url-button:focus {
   border: 1px solid var(--spotify-green);
 }
 
@@ -142,11 +145,11 @@ p {
 
 .playlist:hover {
   cursor: pointer;
-  -moz-transform: scale(1.125);
-  -webkit-transform: scale(1.125);
-  -o-transform: scale(1.125);
-  -ms-transform: scale(1.125);
-  transform: scale(1.125);
+  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .playlist-img {
@@ -154,9 +157,6 @@ p {
   height: auto;
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
-}
-
-.playlist-img {
 }
 
 
@@ -169,7 +169,7 @@ p {
   line-height: 1.125rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -202,3 +202,21 @@ a:hover {
 a:focus {
   color: var(--spotify-green);
 }
+
+.toast {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  opacity: 0;
+  z-index: 999;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
