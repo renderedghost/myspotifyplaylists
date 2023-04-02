@@ -72,3 +72,18 @@ app.get('/playlists/:userId', async (req, res) => {
     res.status(500).send('Error fetching playlists');
   }
 });
+
+app.get('/playlists/:userId/:playlistId', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.spotify.com/v1/playlists/${req.params.playlistId}`, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching playlist details');
+  }
+});

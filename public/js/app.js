@@ -23,17 +23,31 @@ const displayPlaylists = (playlists) => {
   counter.textContent = `Showing ${playlists.items.length} playlists`;
 
   playlistsContainer.innerHTML = '';
-  playlists.items.forEach((playlist) => {
+  playlists.items.forEach(async (playlist) => {
     const playlistElement = document.createElement('div');
     playlistElement.className = 'playlist';
     playlistElement.innerHTML = `
-      <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
-      <p class="playlist-title">${playlist.name}</p>
-      <p class="playlist-tracks">${playlist.tracks.total} songs</p>
+    <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
+    <p class="playlist-title">${playlist.name}</p>
+    <p class="playlist-description">${playlist.description}</p>
+    <p class="playlist-tracks">${playlist.tracks.total} songs</p>
     `;
+
+  // Make an API request to get the playlist details
+    try {
+      const response = await fetch(`/playlists/${userId}/${playlist.id}`);
+      const playlistDetails = await response.json();
+      playlistElement.innerHTML += `
+      <p class="playlist-followers">${playlistDetails.followers.total} followers</p>
+      `;
+    } catch (error) {
+      console.error(error);
+    }
+
     playlistElement.onclick = () => window.open(playlist.external_urls.spotify, '_blank');
     playlistsContainer.appendChild(playlistElement);
   });
+
 };
 
 
@@ -41,7 +55,7 @@ const searchPlaylists = (query) => {
   const filteredPlaylists = {
     items: playlists.items.filter((playlist) =>
       playlist.name.toLowerCase().includes(query.toLowerCase())
-    ),
+      ),
   };
   displayPlaylists(filteredPlaylists);
 };

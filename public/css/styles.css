@@ -7,7 +7,7 @@
   --spotify-white: #FFFFFF;
 
   /* Typography */
-  --main-font: 'Circular Std', sans-serif;
+  --main-font: 'Inter', 'Arial', sans-serif;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: var(--main-font);
   background-color: var(--spotify-black);
   color: var(--spotify-white);
   margin: 0;
@@ -122,13 +122,13 @@ h1 {
   flex-direction: column;
   align-items: left;
   cursor: pointer;
-  border-radius: 0.25rem;
-}
+  border-radius: 0.0625rem;
+} 
 
-.playlist:hover {
+/* .playlist:hover {
   outline: 2px solid var(--spotify-white);
   outline-offset: 4px;
-}
+} */
 
 .playlist-img {
   width: 100%;
@@ -138,19 +138,28 @@ h1 {
 }
 
 .playlist-title,
-.playlist-tracks {
+.playlist-tracks,
+.playlist-followers,
+.playlist-description {
   text-align: left;
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.125rem;
   margin:0;
 }
 
+.playlist-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+
 .playlist-title {
-  font-weight: 600;
   color: var(--spotify-white);
 }
 
-.playlist-tracks {
+.playlist-tracks,
+.playlist-followers {
   color: var(--spotify-light-grey);
 }
 
