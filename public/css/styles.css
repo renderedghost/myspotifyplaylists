@@ -41,6 +41,25 @@ header {
   background: linear-gradient(0deg, rgba(29,185,84,0) 0%, rgba(29,185,84,0.38) 50%, rgba(29,185,84,1) 100%);
 }
 
+footer {
+  background-color: var(--spotify-black);
+  padding: 2rem;
+  text-align: center;
+}
+
+a {
+  color: var(--spotify--white);
+  border-radius: 0.125rem;
+}
+
+a:hover {
+  color: var(--spotify-green);
+}
+
+a:focus {
+  color: var(--spotify-green);
+}
+
 main {
   padding: 0rem 2rem;
 }
@@ -184,39 +203,16 @@ p {
   color: var(--spotify-light-grey);
 }
 
-footer {
-  background-color: var(--spotify-black);
-  padding: 2rem;
-  text-align: center;
+
+
+.loading-message {
+  display: none;
+  padding: 1rem 1.5rem;
+  background-color: var(--spotify-dark-grey);
+  color: var(--spotify-white);
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 0.25rem;
 }
 
-a {
-  color: var(--spotify--white);
-  border-radius: 0.125rem;
-}
-
-a:hover {
-  color: var(--spotify-green);
-}
-
-a:focus {
-  color: var(--spotify-green);
-}
-
-.toast {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  background-color: #333;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  opacity: 0;
-  z-index: 999;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.toast.show {
-  opacity: 1;
-}
 
