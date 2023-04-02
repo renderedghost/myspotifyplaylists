@@ -8,62 +8,76 @@ const fetchPlaylists = async () => {
   try {
     const response = await fetch(`/playlists/${userId}`);
     playlists = await response.json();
+
+    const playlistDetailsPromises = playlists.items.map(async (playlist) => {
+      try {
+        const detailsResponse = await fetch(`/playlists/${userId}/${playlist.id}`);
+        const playlistDetails = await detailsResponse.json();
+        return {
+          ...playlist,
+          fullDescription: playlistDetails.description || '',
+          followers: playlistDetails.followers || { total: 0 },
+        };
+      } catch (error) {
+        console.error(error);
+        return {
+          ...playlist,
+          fullDescription: playlist.description || '',
+          followers: { total: 0 },
+        };
+      }
+    });
+
+    playlists.items = await Promise.all(playlistDetailsPromises);
     displayPlaylists(playlists);
   } catch (error) {
     console.error(error);
   }
 };
 
+
+
+
 const displayPlaylists = (playlists) => {
+  playlistsContainer.innerHTML = '';
+
   // Sort playlists by title in ascending order
   playlists.items.sort((a, b) => a.name.localeCompare(b.name));
 
   const counter = document.getElementById('playlist-counter');
   counter.textContent = `Showing ${playlists.items.length} playlists`;
 
-  playlistsContainer.innerHTML = '';
-  playlists.items.forEach(async (playlist) => {
+  playlists.items.forEach((playlist) => {
     const playlistElement = document.createElement('div');
     playlistElement.className = 'playlist';
     playlistElement.innerHTML = `
     <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
     <p class="playlist-title">${playlist.name}</p>
     <p class="playlist-tracks">${playlist.tracks.total} songs</p>
-    <p class="playlist-followers">${await getPlaylistFollowers(playlist.id)} followers</p>
-    <p class="playlist-description">${playlist.description}</p>
+    <p class="playlist-followers">${playlist.followers.total} followers</p>
+    <p class="playlist-description">${playlist.description || ''}</p>
     `;
+
     playlistElement.onclick = () => window.open(playlist.external_urls.spotify, '_blank');
     playlistsContainer.appendChild(playlistElement);
   });
 };
 
+
 const searchPlaylists = (query) => {
+  const queryLowerCase = query.toLowerCase();
   const filteredPlaylists = {
     items: playlists.items.filter((playlist) =>
-      playlist.name.toLowerCase().includes(query.toLowerCase())
-      ),
+      playlist.name.toLowerCase().includes(queryLowerCase) || playlist.fullDescription.toLowerCase().includes(queryLowerCase)
+    ),
   };
   displayPlaylists(filteredPlaylists);
 };
 
-const getPlaylistFollowers = async (playlistId) => {
-  try {
-    const response = await fetch(`/playlists/${userId}/${playlistId}`);
-    const playlistDetails = await response.json();
-    return playlistDetails.followers.total;
-  } catch (error) {
-    console.error(error);
-    return 'N/A';
-  }
-};
 
-const toast = (message) => {
-  const toastContainer = document.getElementById('toast-container');
-  const toastElement = document.createElement('div');
-  toastElement.className = 'toast';
-  toastElement.textContent = message;
-  toastContainer.appendChild(toastElement);
-  setTimeout(() => toastElement.remove(), 3000);
+const sortPlaylists = () => {
+  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
+  displayPlaylists(playlists);
 };
 
 searchInput.addEventListener('input', (event) => {
