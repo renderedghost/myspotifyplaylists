@@ -24,25 +24,40 @@ body {
   background-color: var(--spotify-black);
   color: var(--spotify-white);
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 header {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem 3rem 2rem;
   text-align: center;
   background: var(--spotify-black);
   background: linear-gradient(0deg, rgba(29,185,84,0) 0%, rgba(29,185,84,0.38) 50%, rgba(29,185,84,1) 100%);
 }
 
 main {
-  padding: 2rem;
+  padding: 0rem 2rem;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
   font-weight: 400;
+  display: block;
+  margin: 0;
 }
+
+p {
+  margin: 0;
+}
+
+
 
 .button {
   padding: 0.5rem 1rem;
@@ -113,29 +128,37 @@ h1 {
 
 #playlists-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 2rem;
 }
 
 .playlist {
   display: flex;
   flex-direction: column;
   align-items: left;
-  cursor: pointer;
   border-radius: 0.0625rem;
+  transition: transform 150ms ease-in-out;
 } 
 
-/* .playlist:hover {
-  outline: 2px solid var(--spotify-white);
-  outline-offset: 4px;
-} */
+.playlist:hover {
+  cursor: pointer;
+  -moz-transform: scale(1.125);
+  -webkit-transform: scale(1.125);
+  -o-transform: scale(1.125);
+  -ms-transform: scale(1.125);
+  transform: scale(1.125);
+}
 
 .playlist-img {
   width: 100%;
   height: auto;
   margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
+
+.playlist-img {
+}
+
 
 .playlist-title,
 .playlist-tracks,
@@ -144,22 +167,20 @@ h1 {
   text-align: left;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  margin:0;
-}
-
-.playlist-description {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .playlist-title {
+  font-weight: 500;
   color: var(--spotify-white);
 }
 
 .playlist-tracks,
-.playlist-followers {
+.playlist-followers,
+.playlist-description {
   color: var(--spotify-light-grey);
 }
 
@@ -167,4 +188,17 @@ footer {
   background-color: var(--spotify-black);
   padding: 2rem;
   text-align: center;
+}
+
+a {
+  color: var(--spotify--white);
+  border-radius: 0.125rem;
+}
+
+a:hover {
+  color: var(--spotify-green);
+}
+
+a:focus {
+  color: var(--spotify-green);
 }
