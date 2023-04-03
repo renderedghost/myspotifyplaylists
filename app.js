@@ -10,8 +10,8 @@ app.listen(PORT, () => {
 });
 
 const axios = require('axios');
-const client_id = '34485ef4edc945dbbebd753dd87ec5ed';
-const client_secret = 'e8270cd5e2af4c8e8ea423158f9e04b9';
+const client_id = 'f628372c7d1747958feacff02d0d5194';
+const client_secret = 'f7f472b1900b4d368e603b93d0c41db9';
 
 let access_token;
 
