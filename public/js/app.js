@@ -5,38 +5,56 @@ const loadingMessage = document.getElementById('loading-message');
 
 let playlists = [];
 
-const fetchPlaylists = async () => {
-	loadingMessage.style.display = 'block'; // Show the loading message
-	try {
-		const response = await fetch(`/playlists/${userId}`);
-		playlists = await response.json();
+const fetchPlaylists = async (search = '', offset = 0) => {
+  loadingMessage.style.display = 'block'; // Show the loading message
+  try {
+    const response = await fetch(`/playlists/${userId}?search=${search}&offset=${offset}`);
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      console.error('Error fetching playlists:', errorDetails);
+      throw new Error('Error fetching playlists');
+    }
+    
+    playlists = await response.json();
 
-		const playlistDetailsPromises = playlists.items.map(async (playlist) => {
-			try {
-				const detailsResponse = await fetch(`/playlists/${userId}/${playlist.id}`);
-				const playlistDetails = await detailsResponse.json();
-				return {
-					...playlist,
-					fullDescription: playlistDetails.description || '',
-					followers: playlistDetails.followers || { total: 0 },
-				};
-			} catch (error) {
-				console.error(error);
-				return {
-					...playlist,
-					fullDescription: playlist.description || '',
-					followers: { total: 0 },
-				};
-			}
-		});
+    console.log('Received playlists:', playlists);
 
-		playlists.items = await Promise.all(playlistDetailsPromises);
-		displayPlaylists(playlists);
-	} catch (error) {
-		console.error(error);
-	}
-	loadingMessage.style.display = 'none'; // Hide the loading message
+    const batchSize = 10;
+    const batchedPlaylistDetailsPromises = [];
+
+    for (let i = 0; i < playlists.items.length; i += batchSize) {
+      const batch = playlists.items.slice(i, i + batchSize);
+      const batchPromises = batch.map(async (playlist) => {
+        try {
+          const detailsResponse = await fetch(`/playlists/${userId}/${playlist.id}`);
+          const playlistDetails = await detailsResponse.json();
+          return {
+            ...playlist,
+            fullDescription: playlistDetails.description || '',
+            followers: playlistDetails.followers || { total: 0 },
+          };
+        } catch (error) {
+          console.error(error);
+          return {
+            ...playlist,
+            fullDescription: playlist.description || '',
+            followers: { total: 0 },
+          };
+        }
+      });
+
+      batchedPlaylistDetailsPromises.push(...batchPromises);
+    }
+
+    playlists.items = await Promise.all(batchedPlaylistDetailsPromises);
+    console.log('Processed playlists:', playlists);
+    displayPlaylists(playlists);
+  } catch (error) {
+    console.error(error);
+  }
+  loadingMessage.style.display = 'none'; // Hide the loading message
 };
+
 
 const displayPlaylists = (playlists) => {
 	playlistsContainer.innerHTML = '';
@@ -65,14 +83,10 @@ const displayPlaylists = (playlists) => {
 
 
 const searchPlaylists = (query) => {
-	const queryLowerCase = query.toLowerCase();
-	const filteredPlaylists = {
-		items: playlists.items.filter((playlist) =>
-			playlist.name.toLowerCase().includes(queryLowerCase) || playlist.fullDescription.toLowerCase().includes(queryLowerCase)
-			),
-	};
-	displayPlaylists(filteredPlaylists);
+  playlistsContainer.innerHTML = '';
+  fetchPlaylists(query);
 };
+
 
 
 const sortPlaylists = () => {
@@ -83,5 +97,20 @@ const sortPlaylists = () => {
 searchInput.addEventListener('input', (event) => {
 	searchPlaylists(event.target.value);
 });
+
+let isLoading = false;
+let searchQuery = '';
+
+window.addEventListener('scroll', async () => {
+  if (isLoading || (window.innerHeight + window.scrollY) < document.body.offsetHeight - 500) {
+    return;
+  }
+
+  isLoading = true;
+  const currentPlaylistsCount = playlistsContainer.childElementCount;
+  await fetchPlaylists(searchQuery, currentPlaylistsCount);
+  isLoading = false;
+});
+
 
 fetchPlaylists();
