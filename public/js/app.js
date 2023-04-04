@@ -2,6 +2,7 @@ const userId = '111112791';
 const playlistsContainer = document.getElementById('playlists-container');
 const searchInput = document.getElementById('search');
 const loadingMessage = document.getElementById('loading-message');
+const resetButton = document.getElementById('reset-button');
 
 let playlists = [];
 
@@ -52,6 +53,13 @@ const fetchPlaylists = async (search = '', offset = 0) => {
   } catch (error) {
     console.error(error);
   }
+  
+  if (search !== '') {
+    resetButton.style.display = 'inline-block';
+  } else {
+    resetButton.style.display = 'none';
+  }
+
   loadingMessage.style.display = 'none'; // Hide the loading message
 };
 
@@ -72,7 +80,7 @@ const displayPlaylists = (playlists) => {
 		<img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
 		<p class="playlist-title">${playlist.name}</p>
 		<p class="playlist-tracks">${playlist.tracks.total} songs</p>
-		<p class="playlist-followers">${playlist.followers.total} followers</p>
+		<p class="playlist-followers">${playlist.followers?.total || 0} followers</p>
 		<p class="playlist-description">${playlist.description || ''}</p>
 		`;
 
@@ -81,21 +89,29 @@ const displayPlaylists = (playlists) => {
 	});
 };
 
-
 const searchPlaylists = (query) => {
   playlistsContainer.innerHTML = '';
   fetchPlaylists(query);
 };
 
-
-
 const sortPlaylists = () => {
-	playlists.items.sort((a, b) => a.name.localeCompare(b.name));
-	displayPlaylists(playlists);
+  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
+  displayPlaylists(playlists);
 };
 
-searchInput.addEventListener('input', (event) => {
-	searchPlaylists(event.target.value);
+searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    searchPlaylists(event.target.value);
+  }
+});
+
+console.log('resetButton:', resetButton);
+console.log('searchInput:', searchInput);
+
+resetButton.addEventListener('click', () => {
+  searchInput.value = '';
+  resetButton.style.display = 'none';
+  fetchPlaylists();
 });
 
 let isLoading = false;
@@ -111,6 +127,5 @@ window.addEventListener('scroll', async () => {
   await fetchPlaylists(searchQuery, currentPlaylistsCount);
   isLoading = false;
 });
-
 
 fetchPlaylists();

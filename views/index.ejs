@@ -18,28 +18,44 @@
 </head>
 
 <body>
+
+	<!-- Header -->
+	
 	<header>
 		<img class="avatar" src="/media/avatar.jpg">
 		<h1>ՅȝȝՐȝ's Playlists</h1>
 		<a class="button" href="https://open.spotify.com/user/111112791" target="blank">Follow on Spotify</a>
 	</header>
+	
+	<!-- Main -->
+	
 	<main>
 		<div id="search-container">
 			<input type="text" id="search" placeholder="Search playlists...">
+			<!-- <button id="search-button" class="button" >Search</button> -->
 		</div>
+
 		<div id="counter-container">
 			<span id="playlist-counter"></span>
+			<a id="reset-button" style="display: none;">Clear Results</a>
 		</div>
-		<div id="loading-message" class="loading-message">Playlists are loading...</div>
+		
+		<div id="loading-message" class="loading-message">
+			<p>Playlists are loading...</p>
+		</div>
+		
 		<section id="playlists-container">
-			<!-- Playlists will be added via JavaScript -->
+		<!-- Playlists will be added via JavaScript -->
 		</section>
 	</main>
+
+	<!-- Footer -->
+
 	<footer>
 		<p>Created with <3 by <a href="https://linktr.ee/barryprendergast" target="blank">Barry Prendergast</a> &#169; in 2023</p>
-	</footer>
+		</footer>
 
-	<script src="/js/app.js"></script>
-</body>
+		<script src="/js/app.js"></script>
+	</body>
 
-</html>
+	</html>

@@ -76,6 +76,9 @@ p {
   margin: 0;
 }
 
+input::placeholder {
+    color: var(--spotify-light-grey);
+}
 
 
 .button,
@@ -118,7 +121,21 @@ p {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+#search-container::after {
+  content: 'ENTER';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--spotify-light-grey);
 }
 
 #search {
@@ -127,7 +144,7 @@ p {
   background-color: var(--spotify-dark-grey);
   color: var(--spotify-white);
   border: 1px solid var(--spotify-light-grey);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 300;
   border-radius: 0.25rem;
 }
@@ -139,14 +156,17 @@ p {
 #counter-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+#playlist-counter {
+  display: inline-block;
   font-size: 1rem;
   font-weight: 400;
   color: var(--spotify-light-grey);
 }
-
-#playlist-counter {}
 
 #playlists-container {
   display: grid;
@@ -155,6 +175,7 @@ p {
 }
 
 .playlist {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: left;
