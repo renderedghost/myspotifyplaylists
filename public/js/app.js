@@ -65,29 +65,43 @@ const fetchPlaylists = async (search = '', offset = 0) => {
 
 
 const displayPlaylists = (playlists) => {
-	playlistsContainer.innerHTML = '';
+  playlistsContainer.innerHTML = '';
 
   // Sort playlists by title in ascending order
-	playlists.items.sort((a, b) => a.name.localeCompare(b.name));
+  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
 
-	const counter = document.getElementById('playlist-counter');
-	counter.textContent = `Showing ${playlists.items.length} playlists`;
+  const counter = document.getElementById('playlist-counter');
+  counter.textContent = `Showing ${playlists.items.length} playlists`;
 
-	playlists.items.forEach((playlist) => {
-		const playlistElement = document.createElement('div');
-		playlistElement.className = 'playlist';
-		playlistElement.innerHTML = `
-		<img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
-		<p class="playlist-title">${playlist.name}</p>
-		<p class="playlist-tracks">${playlist.tracks.total} songs</p>
-		<p class="playlist-followers">${playlist.followers?.total || 0} followers</p>
-		<p class="playlist-description">${playlist.description || ''}</p>
-		`;
+  playlists.items.forEach((playlist) => {
+    const playlistElement = document.createElement('div');
+    playlistElement.className = 'playlist';
+    playlistElement.innerHTML = `
+    <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
+    <p class="playlist-title">${playlist.name}</p>
+    <p class="playlist-tracks">${playlist.tracks.total} songs</p>
+    <p class="playlist-followers">${playlist.followers.total} followers</p>
+    <p class="playlist-description">${playlist.description || ''}</p>
+    `;
 
-		playlistElement.onclick = () => window.open(playlist.external_urls.spotify, '_blank');
-		playlistsContainer.appendChild(playlistElement);
-	});
+    const coverArt = playlistElement.querySelector('.playlist-img');
+    coverArt.addEventListener('click', () => {
+      const overlay = document.getElementById('overlay');
+      const player = document.getElementById('spotify-player');
+      player.src = `https://open.spotify.com/embed/playlist/${playlist.id}`;
+      overlay.classList.remove('hidden');
+    });
+
+    playlistsContainer.appendChild(playlistElement);
+  });
 };
+
+const closeOverlay = document.getElementById('close-overlay');
+closeOverlay.addEventListener('click', () => {
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('hidden');
+});
+
 
 const searchPlaylists = (query) => {
   playlistsContainer.innerHTML = '';
