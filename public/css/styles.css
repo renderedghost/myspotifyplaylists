@@ -129,7 +129,7 @@ input::placeholder {
 #search-container::after {
   content: 'ENTER';
   position: absolute;
-  right: 1rem;
+  right: 1.5rem;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
