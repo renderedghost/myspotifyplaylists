@@ -19,13 +19,20 @@
   outline-offset: 4px;
 }
 
+
 body {
   font-family: var(--main-font);
   background-color: var(--spotify-black);
   color: var(--spotify-white);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 300;
   margin: 0;
-  font-size: 14px;
-  font-weight: 400;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding: 0;
 }
 
 header {
@@ -41,10 +48,46 @@ header {
   background: linear-gradient(0deg, rgba(29,185,84,0) 0%, rgba(29,185,84,0.38) 50%, rgba(29,185,84,1) 100%);
 }
 
+main {
+  padding: 0rem 2rem;
+}
+
 footer {
   background-color: var(--spotify-black);
   padding: 2rem;
   text-align: center;
+}
+
+/* TYPE */
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 400;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 500;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+input::placeholder {
+  color: var(--spotify-light-grey);
 }
 
 a {
@@ -60,29 +103,35 @@ a:focus {
   color: var(--spotify-green);
 }
 
-main {
-  padding: 0rem 2rem;
+.label {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.25rem;
 }
 
-h1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
-  font-weight: 400;
-  display: block;
-  margin: 0;
+.clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-p {
-  margin: 0;
+.primary {
+  color: var(--spotify-white);
 }
 
-input::placeholder {
-    color: var(--spotify-light-grey);
+.secondary {
+  color: var(--spotify-light-grey);
+}
+
+.title {
+  font-weight: 500;
 }
 
 
-.button,
-.copy-url-button {
+/* ACTIONS */
+
+.button {
   padding: 0.5rem 1rem;
   background-color: transparent;
   border: 1px solid var(--spotify-white);
@@ -98,14 +147,12 @@ input::placeholder {
   text-decoration: none;
 }
 
-.button:hover,
-.copy-url-button:hover {
+.button:hover {
   color: var(--spotify-green);
   border: 1px solid var(--spotify-green);
 }
 
-.button:focus,
-.copy-url-button:focus {
+.button:focus {
   border: 1px solid var(--spotify-green);
 }
 
@@ -168,6 +215,8 @@ input::placeholder {
   color: var(--spotify-light-grey);
 }
 
+/* PLAYLISTS */
+
 #playlists-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
@@ -178,10 +227,12 @@ input::placeholder {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: left;
-  border-radius: 0.0625rem;
   transition: transform 150ms ease-in-out;
-} 
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.125rem;
+}
 
 .playlist:hover {
   cursor: pointer;
@@ -200,31 +251,6 @@ input::placeholder {
 }
 
 
-.playlist-title,
-.playlist-tracks,
-.playlist-followers,
-.playlist-description {
-  text-align: left;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.playlist-title {
-  font-weight: 500;
-  color: var(--spotify-white);
-}
-
-.playlist-tracks,
-.playlist-followers,
-.playlist-description {
-  color: var(--spotify-light-grey);
-}
-
-
 
 .loading-message {
   display: none;
@@ -236,29 +262,32 @@ input::placeholder {
   border-radius: 0.25rem;
 }
 
-.hidden {
-  display: none;
-}
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
 }
 
 .overlay-content {
   position: relative;
-  width: 80vw;
-  height: 60vh;
-  background-color: var(--spotify-dark-grey);
+  width: 64rem;
+  height: 540px;
+  background-color: var(--spotify-black);
   padding: 2rem;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
 }
 
 .close-overlay {
@@ -270,6 +299,21 @@ input::placeholder {
   cursor: pointer;
 }
 
+.overlay-player-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+#spotify-player {
+  width: 100%;
+  height: 24rem;
+  border: 0;
+}
+
 .hidden {
   display: none;
 }
+

@@ -78,21 +78,32 @@ const displayPlaylists = (playlists) => {
     playlistElement.className = 'playlist';
     playlistElement.innerHTML = `
     <img class="playlist-img" src="${playlist.images[0].url}" alt="${playlist.name} cover art">
-    <p class="playlist-title">${playlist.name}</p>
-    <p class="playlist-tracks">${playlist.tracks.total} songs</p>
-    <p class="playlist-followers">${playlist.followers.total} followers</p>
-    <p class="playlist-description">${playlist.description || ''}</p>
+    <p class="label primary title">${playlist.name}</p>
+    <p class="label secondary">${playlist.tracks.total} songs</p>
+    <p class="label secondary">${playlist.followers.total} followers</p>
+    <p class="label secondary clamp">${playlist.description || ''}</p>
     `;
 
+    playlistsContainer.appendChild(playlistElement);
+
     const coverArt = playlistElement.querySelector('.playlist-img');
-    coverArt.addEventListener('click', () => {
+    coverArt.addEventListener('click', (event) => {
+      event.stopPropagation();
       const overlay = document.getElementById('overlay');
       const player = document.getElementById('spotify-player');
+      const overlayTitle = document.getElementById('overlay-playlist-title');
+      const overlayTracks = document.getElementById('overlay-playlist-tracks');
+      const overlayFollowers = document.getElementById('overlay-playlist-followers');
+      const overlayDescription = document.getElementById('overlay-playlist-description');
+
       player.src = `https://open.spotify.com/embed/playlist/${playlist.id}`;
+      overlayTitle.textContent = playlist.name;
+      overlayTracks.textContent = `${playlist.tracks.total} songs`;
+      overlayFollowers.textContent = `${playlist.followers.total} followers`;
+      overlayDescription.textContent = playlist.description || '';
+
       overlay.classList.remove('hidden');
     });
-
-    playlistsContainer.appendChild(playlistElement);
   });
 };
 

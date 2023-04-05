@@ -23,7 +23,7 @@
 	
 	<header>
 		<img class="avatar" src="/media/avatar.jpg">
-		<h1>ՅȝȝՐȝ's Playlists</h1>
+		<h1 class="primary">ՅȝȝՐȝ's Playlists</h1>
 		<a class="button" href="https://open.spotify.com/user/111112791" target="blank">Follow on Spotify</a>
 	</header>
 	
@@ -40,8 +40,8 @@
 			<a id="reset-button" style="display: none;">Clear Results</a>
 		</div>
 		
-		<div id="loading-message" class="loading-message">
-			<p>Playlists are loading...</p>
+		<div id="loading-message" class="label secondary">
+			<p class="label secondary">Playlists are loading...</p>
 		</div>
 		
 		<section id="playlists-container">
@@ -52,17 +52,23 @@
 	<!-- Footer -->
 
 	<footer>
-		<p>Created with <3 by <a href="https://linktr.ee/barryprendergast" target="blank">Barry Prendergast</a> &#169; in 2023</p>
+		<p>Created by <a href="https://linktr.ee/barryprendergast" target="blank">Barry Prendergast</a> &#169; 2023</p>
 	</footer>
 
 	<div id="overlay" class="overlay hidden">
 		<div class="overlay-content">
 			<span id="close-overlay" class="close-overlay">&times;</span>
-			<iframe id="spotify-player" src="" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowtransparency="true" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
+			<h2 id="overlay-playlist-title" class="primary title"></h2>
+			<p id="overlay-playlist-tracks" class="label secondary"></p>
+			<p id="overlay-playlist-followers" class="label secondary"></p>
+			<p id="overlay-playlist-description" class="label secondary clamp"></p>
+			<div class="overlay-player-wrapper">
+				<iframe id="spotify-player" src="" allowtransparency="true" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
+			</div>
 		</div>
 	</div>
 
-		<script src="/js/app.js"></script>
-	</body>
+	<script src="/js/app.js"></script>
+</body>
 
-	</html>
+</html>
