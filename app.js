@@ -37,7 +37,7 @@ const getAccessToken = async () => {
   }
 };
 
-const retry = async (fn, retries = 3, delay = 1000) => {
+const retry = async (fn, retries = 3, delay = 1000, backoffFactor = 2) => {
   for (let i = 0; i < retries; i++) {
     try {
       return await fn();
@@ -45,10 +45,20 @@ const retry = async (fn, retries = 3, delay = 1000) => {
       if (i === retries - 1) {
         throw error;
       }
-      await new Promise((resolve) => setTimeout(resolve, delay));
+
+      if (error.response && error.response.status === 429) {
+        // Use the 'Retry-After' header if available, otherwise, use the default delay
+        const retryAfter = error.response.headers['retry-after'] ? parseInt(error.response.headers['retry-after']) * 1000 : delay * Math.pow(backoffFactor, i);
+        console.log(`Rate limited. Retrying after ${retryAfter / 1000} seconds.`);
+        await new Promise((resolve) => setTimeout(resolve, retryAfter));
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
     }
   }
 };
+
+
 
 getAccessToken();
 
@@ -102,14 +112,38 @@ app.get('/playlists/:userId', async (req, res) => {
       offset += limit;
     }
 
-    const filteredPlaylists = allPlaylists.filter((playlist) => {
+    const detailedPlaylistsPromises = allPlaylists.map(async (playlist) => {
+      const details = await retry(async () => {
+        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+
+        if (res.status === 429) {
+          throw new Error('Rate limited');
+        }
+
+        return res;
+      });
+
+      return {
+        ...playlist,
+        fullDescription: details.data.description || '',
+        followers: details.data.followers || { total: 0 },
+      };
+    });
+
+    const detailedPlaylists = await Promise.all(detailedPlaylistsPromises);
+
+    const filteredPlaylists = detailedPlaylists.filter((playlist) => {
       return (
         playlist.name.toLowerCase().includes(search) ||
         playlist.description.toLowerCase().includes(search)
         );
     });
 
-    console.log('Returning all playlists:', allPlaylists);
+    console.log('Returning all playlists:', detailedPlaylists);
     cache.put(cacheKey, filteredPlaylists, cache_duration); // Cache for cache_duration
     res.json({ items: filteredPlaylists });
   } catch (error) {

@@ -9,11 +9,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-	<meta property="og:title" content=ՅȝȝՐȝ's Playlists>
-	<meta property="og:site_name" content=ՅȝȝՐȝ's Playlists>
-	<meta property="og:url" content=https://my-spotify-playlists.onrender.com/>
-	<meta property="og:description" content=Enjoy my collection of eclectic playlists covering every genre. Whether you're in the mood for something dance-worthy, something chill, or something weird, I've got you covered. Each playlist is carefully curated with tracks that will take you on a musical journey, from new discoveries to old favorites. >
-	<meta property="og:type" content=product>
+	<meta property="og:title" content="ՅȝȝՐȝ's Playlists">
+	<meta property="og:site_name" content="ՅȝȝՐȝ's Playlists">
+	<meta property="og:url" content="https://my-spotify-playlists.onrender.com/">
+	<meta property="og:description" content="Enjoy my collection of eclectic playlists covering every genre. Whether you're in the mood for something dance-worthy, something chill, or something weird, I've got you covered. Each playlist is carefully curated with tracks that will take you on a musical journey, from new discoveries to old favorites.">
+	<meta property="og:type" content="product">
 	<meta property="og:image" content="">
 </head>
 
@@ -22,9 +22,9 @@
 	<!-- Header -->
 	
 	<header>
-		<img class="avatar" src="/media/avatar.jpg">
+		<img class="avatar" src="/media/avatar.jpg" alt="Avatar">
 		<h1 class="primary">ՅȝȝՐȝ's Playlists</h1>
-		<a class="button" href="https://open.spotify.com/user/111112791" target="blank">Follow on Spotify</a>
+		<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">Follow on Spotify</a>
 	</header>
 	
 	<!-- Main -->
@@ -32,7 +32,6 @@
 	<main>
 		<div id="search-container">
 			<input type="text" id="search" placeholder="Search playlists...">
-			<!-- <button id="search-button" class="button" >Search</button> -->
 		</div>
 
 		<div id="counter-container">
@@ -52,11 +51,11 @@
 	<!-- Footer -->
 
 	<footer>
-		<p>Created by <a href="https://linktr.ee/barryprendergast" target="blank">Barry Prendergast</a> &#169; 2023</p>
+		<p>Created by <a href="https://linktr.ee/barryprendergast" target="_blank">Barry Prendergast</a> &#169; 2023</p>
 	</footer>
 
-	<div id="overlay" class="overlay hidden">
-		<div class="overlay-content">
+	<div id="overlay-background" class="overlay hidden">
+		<div id="overlay" class="overlay-content">
 			<span id="close-overlay" class="close-overlay">&times;</span>
 			<h2 id="overlay-playlist-title" class="primary title"></h2>
 			<p id="overlay-playlist-tracks" class="label secondary"></p>
@@ -65,10 +64,13 @@
 			<div class="overlay-player-wrapper">
 				<iframe id="spotify-player" src="" allowtransparency="true" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
 			</div>
+			<div class="row">
+		      <button id="open-web" class="button" data-playlist-id="">Open in Spotify Web</button>
+		      <button id="copy-url" class="button">Copy Link</button>
+		    </div>
 		</div>
 	</div>
 
 	<script src="/js/app.js"></script>
 </body>
-
 </html>

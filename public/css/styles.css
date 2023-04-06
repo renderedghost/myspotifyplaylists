@@ -19,6 +19,9 @@
   outline-offset: 4px;
 }
 
+html {
+  font-size: 15px;
+}
 
 body {
   font-family: var(--main-font);
@@ -93,6 +96,7 @@ input::placeholder {
 a {
   color: var(--spotify--white);
   border-radius: 0.125rem;
+  font-weight: 400;
 }
 
 a:hover {
@@ -125,7 +129,7 @@ a:focus {
 }
 
 .title {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 
@@ -227,20 +231,26 @@ a:focus {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: transform 150ms ease-in-out;
   align-content: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0.125rem;
+  transform: scale(1);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transition: transform 50ms ease-in-out;
 }
 
 .playlist:hover {
   cursor: pointer;
+  transform: scale(1.05);
   -moz-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   -o-transform: scale(1.05);
   -ms-transform: scale(1.05);
-  transform: scale(1.05);
+  transition: transform 150ms ease-in-out;
 }
 
 .playlist-img {
@@ -264,24 +274,24 @@ a:focus {
 
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 3rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 3rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
 }
 
 .overlay-content {
   position: relative;
-  width: 64rem;
-  height: 540px;
+  width: 50vw;
+  height: fit-content;
   background-color: var(--spotify-black);
   padding: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -290,12 +300,19 @@ a:focus {
   gap: 0.25rem;
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
 .close-overlay {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  font-weight: bold;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -303,17 +320,22 @@ a:focus {
   position: relative;
   display: block;
   width: 100%;
-  height: auto;
+  height: 32rem;
   margin-top: 1rem;
+  left: 0;
 }
 
 #spotify-player {
+  position: absolute;
   width: 100%;
-  height: 24rem;
+  height: 100%;
   border: 0;
+  top: 0;
+  left: 0;
 }
 
 .hidden {
   display: none;
 }
+
 

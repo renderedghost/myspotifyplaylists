@@ -4,3 +4,8 @@
 * Add a copy url button
 * Add an open in spotify button
 * Add an open in the app button
+
+# Bugs
+
+* Scrolling down on search results clears search results
+
