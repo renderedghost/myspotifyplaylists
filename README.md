@@ -6,9 +6,6 @@ Barry's Playlist App is a Spotify playlist app that provides weekly curated play
 
 * Weekly curated playlists for every genre and mood
 * Deep dives on artist's back catalogues
-* Easily add songs to your own Spotify playlists
-* Seamless integration with Spotify
-* Beautiful, easy-to-use interface
 
 ## Getting Started
 
@@ -18,7 +15,7 @@ Barry's Playlist App is a Spotify playlist app that provides weekly curated play
 
 3. Add http://localhost:3000/callback as a Redirect URI in your Spotify App settings.
 
-4. Copy the Client ID and Client Secret from your Spotify App settings and add them to a .env file at the root of the project:
+4. Copy the Client ID and Client Secret from your Spotify App settings and add them, along with a cache duration to a `.env` file at the root of the project:
    
 ```
 CLIENT_ID=<your-client-id>
@@ -26,15 +23,11 @@ CLIENT_SECRET=<your-client-secret>
 CACHE_DURATION=<your cache duration in MS>
 ```
 
-5. Install the required packages using npm install.
+5. Install the required packages using `npm install`.
 
-6. Start the development server using npm start.
+6. Start the development server using `npm start`.
 
 7. Visit http://localhost:3000 in your web browser to use the app.
-
-## Usage
-
-* TBC
 
 ## Contributing
 
