@@ -21,8 +21,9 @@ Barry's Playlist App is a Spotify playlist app that provides weekly curated play
 4. Copy the Client ID and Client Secret from your Spotify App settings and add them to a .env file at the root of the project:
    
 ```
-REACT_APP_SPOTIFY_CLIENT_ID=<your-client-id>
-REACT_APP_SPOTIFY_CLIENT_SECRET=<your-client-secret>
+CLIENT_ID=<your-client-id>
+CLIENT_SECRET=<your-client-secret>
+CACHE_DURATION=<your cache duration in MS>
 ```
 
 5. Install the required packages using npm install.
