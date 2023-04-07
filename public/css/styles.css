@@ -21,13 +21,13 @@
   --font-size-button: 0.75rem;
   --font-size-base: 1rem;
   --font-size-playlist: 2.5rem;
-  --font-size-app: 2rem;
+  --font-size-app: 1.5rem;
 
   --font-height-context: 1.25rem;
   --font-height-app: 1.25rem;
   --font-height-base: 1.5rem;
   --font-height-playlist: 3rem;
-  --font-height-app: 2.5rem;
+  --font-height-app: 2rem;
 
   /* Transition */
   --transition-fast: 50ms;
@@ -160,7 +160,6 @@ a {
   border-style: solid;
   border-width: 1px;
   border-radius: 0.25rem;
-  letter-spacing: .1em;
   transition: all var(--transition-base) ease-in-out;
 }
 
@@ -175,6 +174,7 @@ a {
   font-size: var(--font-size-base);
   line-height: var(--font-height-base);
   font-weight: var(--font-weight-medium);
+  letter-spacing: .1em;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
@@ -182,8 +182,13 @@ a {
 }
 
 a:hover,
+a:focus {
+  color: var(--spotify-green);
+  border-color: transparent;
+  transition: all var(--transition-fast) ease-in-out;
+}
+
 .button:hover,
-a:focus,
 .button:focus {
   color: var(--spotify-green);
   border-color: var(--spotify-green);
@@ -315,25 +320,27 @@ input::placeholder {
 /* Overlay */
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 3rem;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 3rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .overlay-content {
   position: relative;
-  width: 50vw;
+  width: 100%;
   height: fit-content;
   background-color: var(--spotify-black);
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
   display: flex;
+  flex: auto;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -351,7 +358,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1rem;
+    margin: 1rem 0rem;
 }
 
 .slim {
