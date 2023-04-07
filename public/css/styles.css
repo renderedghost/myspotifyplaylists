@@ -363,7 +363,7 @@ input::placeholder {
   position: relative;
   width: 100%;
   height: fit-content;
-  background-color: var(--swatch-black);
+  background-color: var(--swatch-dark-grey);
   padding: 3rem 2rem;
   border-radius: 1rem;
   display: flex;

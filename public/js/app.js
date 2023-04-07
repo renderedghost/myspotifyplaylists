@@ -17,70 +17,65 @@ const updateResetButton = (search) => {
   resetButton.style.display = search !== '' ? 'inline-block' : 'none';
 };
 
-const fetchPlaylists = async (search = '', offset = 0) => {
+let allFetchedPlaylists = [];
+
+const fetchAllPlaylists = async (userId, offset = 0, fetchedPlaylists = []) => {
+  try {
+    const response = await fetch(`/playlists/${userId}?offset=${offset}`);
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      console.error('Error fetching playlists:', errorDetails);
+      return [];
+    }
+
+    const newPlaylists = await response.json();
+    console.log('Received playlists:', newPlaylists);
+
+    fetchedPlaylists = fetchedPlaylists.concat(newPlaylists.items);
+
+    if (newPlaylists.items.length === 50) {
+      return await fetchAllPlaylists(userId, offset + 50, fetchedPlaylists);
+    }
+
+    return fetchedPlaylists;
+  } catch (error) {
+    console.error('Error fetching playlists:', error);
+    return [];
+  }
+};
+
+const fetchPlaylists = async (search = '') => {
   toggleLoadingMessage(true);
 
   try {
-    const cacheKey = `playlists-${userId}-${search}-${offset}`;
-    const cachedPlaylists = localStorage.getItem(cacheKey);
+    if (allFetchedPlaylists.length === 0) {
+      const cacheKey = `playlists-${userId}`;
+      const cachedPlaylists = localStorage.getItem(cacheKey);
 
-    if (cachedPlaylists) {
-      console.log('Using cached playlists');
-      displayPlaylists(JSON.parse(cachedPlaylists));
-    } else {
-      const response = await fetch(`/playlists/${userId}?search=${search}&offset=${offset}`);
-      if (!response.ok) {
-        const errorDetails = await response.json();
-        console.error('Error fetching playlists:', errorDetails);
-        throw new Error('Error fetching playlists');
+      if (cachedPlaylists) {
+        console.log('Using cached playlists');
+        allFetchedPlaylists = JSON.parse(cachedPlaylists);
+      } else {
+        allFetchedPlaylists = await fetchAllPlaylists(userId);
+        localStorage.setItem(cacheKey, JSON.stringify(allFetchedPlaylists));
       }
-
-      const fetchedPlaylists = await response.json();
-      console.log('Received playlists:', fetchedPlaylists);
-
-
-      const batchSize = 20;
-      const batchedPlaylistDetailsPromises = [];
-
-      for (let i = 0; i < fetchedPlaylists.items.length; i += batchSize) {
-        const batch = fetchedPlaylists.items.slice(i, i + batchSize);
-        const batchPromises = batch.map(async (playlist) => {
-          try {
-            const detailsResponse = await fetch(`/playlists/${userId}/${playlist.id}`);
-            const playlistDetails = await detailsResponse.json();
-            return {
-              ...playlist,
-              fullDescription: playlistDetails.description || '',
-              followers: playlistDetails.followers || { total: 0 },
-            };
-          } catch (error) {
-            console.error(error);
-            return {
-              ...playlist,
-              fullDescription: playlist.description || '',
-              followers: { total: 0 },
-            };
-          }
-        });
-
-        batchedPlaylistDetailsPromises.push(...batchPromises);
-      }
-
-      fetchedPlaylists.items = await Promise.all(batchedPlaylistDetailsPromises);
-      console.log('Processed playlists:', fetchedPlaylists);
-
-      // Store the fetched playlists in localStorage
-      localStorage.setItem(cacheKey, JSON.stringify(fetchedPlaylists));
-
-      displayPlaylists(fetchedPlaylists);
     }
+
+    const searchLowerCase = search.toLowerCase();
+
+    const filteredPlaylists = allFetchedPlaylists.filter((playlist) =>
+      playlist.name.toLowerCase().includes(searchLowerCase) ||
+      (playlist.description && playlist.description.toLowerCase().includes(searchLowerCase))
+    );
+    displayPlaylists(filteredPlaylists);
+    updateResetButton(search);
   } catch (error) {
     console.error(error);
+  } finally {
+    toggleLoadingMessage(false);
   }
-
-  updateResetButton(search);
-  toggleLoadingMessage(false);
 };
+
 
 
 const displayPlaylists = (playlists) => {
@@ -88,12 +83,12 @@ const displayPlaylists = (playlists) => {
     playlistsContainer.removeChild(playlistsContainer.firstChild);
   }
 
-  playlists.items.sort((a, b) => a.name.localeCompare(b.name));
+  playlists.sort((a, b) => a.name.localeCompare(b.name));
 
   const counter = document.getElementById('playlist-counter');
-  counter.textContent = `Showing ${playlists.items.length} playlists`;
+  counter.textContent = `Showing ${playlists.length} playlists`;
 
-  playlists.items.forEach((playlist) => {
+  playlists.forEach((playlist) => {
     const playlistElement = document.createElement('div');
     playlistElement.className = 'playlist';
     playlistElement.innerHTML = `
