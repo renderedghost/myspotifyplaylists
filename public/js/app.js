@@ -212,5 +212,17 @@ tooltipElements.forEach((element) => {
   });
 });
 
+const genreLinks = document.querySelectorAll('.genre-link');
+
+genreLinks.forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const genre = event.target.getAttribute('data-genre');
+    const searchInput = document.getElementById('search');
+    searchInput.value = genre;
+    searchPlaylists(genre);
+  });
+});
+
 fetchPlaylists();
 

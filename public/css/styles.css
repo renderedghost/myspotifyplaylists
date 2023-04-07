@@ -47,7 +47,7 @@
   --font-height-base: var(--size-large);
   --font-height-statement: var(--size-large-x);
   --font-height-playlist: var(--size-large-xxx);
-  --font-height-app: var(--size-large-xxxxxxxx);
+  --font-height-app: var(--size-large-xxxxxxxxx);
 
   /* Transition */
   --transition-fast: 50ms;
@@ -63,7 +63,6 @@
 }
 
 /* End of Variables */
-
 
 :focus {
   outline: 2px solid var(--swatch-white);
@@ -263,7 +262,6 @@ a {
 a:hover,
 a:focus {
   color: var(--swatch-green);
-  border-color: transparent;
   transition: all var(--transition-fast) ease-in-out;
 }
 
@@ -357,8 +355,8 @@ input::placeholder {
 
 #playlists-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: var(--size-large-xx);
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: var(--size-large);
 }
 
 .playlist {
