@@ -1,6 +1,6 @@
-# Barry's Playlist App
+# Sound Selections
 
-Barry's Playlist App is a Spotify playlist app that provides weekly curated playlists for every genre and mood, as well as deep dives on artist's back catalogues. With this app, you'll be able to discover new music and artists that you might not have found otherwise.
+Sound Selections is a Spotify playlist app that serves my weekly curated playlists for every genre and mood, as well as deep dives on artist's back catalogues. With this app, you'll be able to discover new music and artists that you might not have found otherwise.
 
 ## Features
 
