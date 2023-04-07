@@ -98,10 +98,13 @@ const displayPlaylists = (playlists) => {
     playlistElement.className = 'playlist';
     playlistElement.innerHTML = `
     <img class="playlist-img" src="${playlist.images[0]?.url || ''}" alt="${playlist.name} cover art">
-    <p class="label primary title clamp">${playlist.name}</p>
-    <p class="label secondary">${playlist.tracks.total} songs</p>
-    <p class="label secondary">${playlist.followers.total} followers</p>
-    <p class="label secondary clamp">${playlist.description || ''}</p>
+    <p class="label primary title clamp-1">${playlist.name}</p>
+    <div class="row slim">
+      <p class="label secondary">${(playlist.tracks?.total || 0)} songs</p>
+      <p class="label secondary">&#124;</p>
+      <p class="label secondary">${(playlist.followers?.total || 0)} followers</p>
+    </div>
+    <p class="label mid clamp-2">${playlist.description || ''}</p>
     `;
 
     playlistsContainer.appendChild(playlistElement);

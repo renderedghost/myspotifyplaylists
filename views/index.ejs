@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/css/styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<meta property="og:title" content="ՅȝȝՐȝ's Playlists">
 	<meta property="og:site_name" content="ՅȝȝՐȝ's Playlists">
 	<meta property="og:url" content="https://my-spotify-playlists.onrender.com/">
@@ -31,7 +31,7 @@
 	
 	<main>
 		<div id="search-container">
-			<input type="text" id="search" placeholder="Search playlists...">
+			<input type="text" id="search" placeholder="Search">
 		</div>
 
 		<div id="counter-container">
@@ -57,17 +57,26 @@
 	<div id="overlay-background" class="overlay hidden">
 		<div id="overlay" class="overlay-content">
 			<span id="close-overlay" class="close-overlay">&times;</span>
-			<h2 id="overlay-playlist-title" class="primary title"></h2>
-			<p id="overlay-playlist-tracks" class="label secondary"></p>
-			<p id="overlay-playlist-followers" class="label secondary"></p>
-			<p id="overlay-playlist-description" class="label secondary clamp"></p>
+
+			<h2 id="overlay-playlist-title" class="primary"></h2>
+
+			<div class="row slim">
+				<p id="overlay-playlist-tracks" class="label secondary"></p>
+				<p id="overlay-playlist-divider" class="label secondary">&#124;</p>
+				<p id="overlay-playlist-followers" class="label secondary"></p>
+			</div>
+
+			<p id="overlay-playlist-description" class="label mid clamp-2"></p>
+
+			<div class="row-large">
+				<a id="open-web" class="button" data-playlist-id="">Open in Spotify Web</a>
+				<a id="copy-url" class="button">Copy Link</a>
+			</div>
+
 			<div class="overlay-player-wrapper">
 				<iframe id="spotify-player" src="" allowtransparency="true" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
 			</div>
-			<div class="row">
-		      <button id="open-web" class="button" data-playlist-id="">Open in Spotify Web</button>
-		      <button id="copy-url" class="button">Copy Link</button>
-		    </div>
+
 		</div>
 	</div>
 
