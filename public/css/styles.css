@@ -1,10 +1,11 @@
 :root {
   /* Color palette */
   --swatch-black: #000000;
-  --swatch-dark-grey: #2c2c2c;
+  --swatch-dark-grey: #1c1c1c;
   --swatch-light-grey: #9a9a9a;
   --swatch-lightest-grey: #cbcbcb;
-  --swatch-green: #1DB954;
+  --swatch-blue: #0000bf;
+  --swatch-cyan:  #00FFFF;
   --swatch-white: #FFFFFF;
 
   /* Typography */
@@ -98,10 +99,10 @@ header {
   gap: var(--size-small);
   padding: var(--size-large-xxxxxxxxx) var(--size-large-xxxxxx);
   background: rgb(0,0,0);
-  background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,68,0,1) 33%, rgba(0,125,28,1) 66%, rgba(29,185,84,1) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,68,0,1) 33%, rgba(0,125,28,1) 66%, rgba(29,185,84,1) 100%);
-  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,68,0,1) 33%, rgba(0,125,28,1) 66%, rgba(29,185,84,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#1db954",GradientType=1);
+  background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,96,1) 50%, rgba(0,0,191,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,96,1) 50%, rgba(0,0,191,1) 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,96,1) 50%, rgba(0,0,191,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#0000bf",GradientType=1); 
 }
 
 @media (max-width: 991px) {
@@ -261,14 +262,14 @@ a {
 
 a:hover,
 a:focus {
-  color: var(--swatch-green);
+  color: var(--swatch-cyan);
   transition: all var(--transition-fast) ease-in-out;
 }
 
 .button:hover,
 .button:focus {
-  color: var(--swatch-green);
-  border-color: var(--swatch-green);
+  color: var(--swatch-cyan);
+  border-color: var(--swatch-cyan);
   transition: all var(--transition-fast) ease-in-out;
 }
 
@@ -330,7 +331,7 @@ input::placeholder {
 }
 
 #search:focus {
-  border: 1px solid var(--swatch-green);
+  border: 1px solid var(--swatch-cyan);
   background-color: var(--swatch-black);
 }
 
