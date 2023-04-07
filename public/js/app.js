@@ -193,5 +193,24 @@ copyUrlButton.addEventListener('click', () => {
   alert('Playlist URL copied to clipboard');
 });
 
+const tooltipElements = document.querySelectorAll('.tooltip');
+const tooltipContainer = document.getElementById('tooltip');
+
+tooltipElements.forEach((element) => {
+  element.addEventListener('mouseover', (event) => {
+    tooltipContainer.textContent = event.target.getAttribute('data-tooltip');
+    tooltipContainer.classList.add('visible');
+  });
+
+  element.addEventListener('mousemove', (event) => {
+    tooltipContainer.style.left = event.pageX + 10 + 'px';
+    tooltipContainer.style.top = event.pageY + 10 + 'px';
+  });
+
+  element.addEventListener('mouseout', () => {
+    tooltipContainer.classList.remove('visible');
+  });
+});
+
 fetchPlaylists();
 

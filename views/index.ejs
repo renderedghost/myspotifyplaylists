@@ -4,13 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Sound Selections</title>
+	<title>SoundSelections — by Beere</title>
 	<link rel="stylesheet" href="/css/styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	<meta property="og:title" content="Sound Selections">
-	<meta property="og:site_name" content="Sound Selections">
+	<meta property="og:title" content="SoundSelections — by Beere">
+	<meta property="og:site_name" content="SoundSelections — by Beere">
 	<meta property="og:url" content="https://my-spotify-playlists.onrender.com/">
 	<meta property="og:description" content="Welcome to my collection of weekly curated playlists. Whether you're looking to get your dance on, unwind with some mellow vibes, or explore some weirder musical corners, I've got something for you.">
 	<meta property="og:type" content="product">
@@ -21,17 +21,20 @@
 
 	<!-- Header -->
 	
-	<header>
-		<div class="header-wrapper">
-			<img class="avatar" src="/media/avatar.jpg" alt="Avatar">
-			<h1 class="primary">Sound Selections</h1>
-			<p class="description">Welcome to my collection of weekly curated playlists. Looking to get your dance on? Unwind with some mellow vibes? Explore some weirder musical corners? I've got something for you!</p>
-			<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">Follow me on Spotify</a>
+	<header class="header">
+		<div class="row-small">
+			<p class="statement primary uppercase">Weekly Curated Playlists — by Beere</p>
+			<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar" data-tooltip="Hi There! 👋">
+		</div>
+		<h1 class="primary">SoundSelections</h1>
+		<p class="statement">Expand your horizons. Get your dance on. Unwind to mellow vibes. Get f**king weird.</p>
+		<div class="row-large">
+			<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">Follow on Spotify</a>
 		</div>
 	</header>
-	
+
 	<!-- Main -->
-	
+
 	<main>
 		<div id="search-container">
 			<input type="text" id="search" placeholder="Search">
@@ -41,11 +44,11 @@
 			<span id="playlist-counter"></span>
 			<a id="reset-button" style="display: none;">Clear Results</a>
 		</div>
-		
+
 		<div id="loading-message" class="label secondary">
 			<p class="label secondary">Loading... Sometimes this can take a while - still learning to code!</p>
 		</div>
-		
+
 		<section id="playlists-container">
 			<!-- Playlists will be added via JavaScript -->
 		</section>
@@ -82,6 +85,8 @@
 
 		</div>
 	</div>
+
+	<div id="tooltip" class="tooltip-container"></div>
 
 	<script src="/js/app.js"></script>
 </body>
