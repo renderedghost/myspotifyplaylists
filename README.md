@@ -23,11 +23,19 @@ CLIENT_SECRET=<your-client-secret>
 CACHE_DURATION=<your cache duration in MS>
 ```
 
-5. Install the required packages using `npm install`.
+1. Install the required packages
 
-6. Start the development server using `npm start`.
+```bash
+npm install
+```
 
-7. Visit http://localhost:3000 in your web browser to use the app.
+1. Start the development server
+
+```bash
+node app.js
+```
+
+1. Visit http://localhost:3000 in your web browser to use the app.
 
 ## Contributing
 
