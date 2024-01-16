@@ -1,55 +1,63 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Sound​Selections — by Beere</title>
-	<link rel="stylesheet" href="/css/styles.css">
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
+
 	<meta property="og:title" content="SoundSelections — by Beere">
 	<meta property="og:site_name" content="SoundSelections — by Beere">
-	<meta property="og:url" content="https://my-spotify-playlists.onrender.com/">
+	<meta property="og:url" content="https://soundselections.onrender.com/">
 	<meta property="og:description"
 		content="Welcome to my collection of weekly curated playlists. Whether you're looking to get your dance on, unwind with some mellow vibes, or explore some weirder musical corners, I've got something for you.">
 	<meta property="og:type" content="product">
 	<meta property="og:image" content="">
-	<!-- Styles -->
+
 	<link rel="stylesheet" href="/css/tokens.css">
 	<link rel="stylesheet" href="/css/global.css">
 	<link rel="stylesheet" href="/css/typography.css">
 	<link rel="stylesheet" href="/css/layout.css">
 	<link rel="stylesheet" href="/css/component.css">
+
 </head>
 
 <body class="flex lay--gap lay--column">
-	<!-- Nav -->
 
 	<nav class="flex lay--justify-center">
+
 		<div class="flex lay--column lay--gap width-control">
+
 			<div class="flex lay--row lay--gap-small lay--align-center">
 				<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar"
 					data-tooltip="Welcome! I hope you find your new favourite thing 👋">
 				<h1 class="text-name-site">Sound<wbr>Selections</h1>
 			</div>
+
 			<div id="nav-search" class="flex">
 				<input type="text" id="search" placeholder="Find your favourite style...">
 			</div>
+
 			<div class="flex lay--row lay--gap-small lay--align-center">
 				<span id="playlist-counter"></span>
 				<a id="reset-button" style="display: none;">Clear Results</a>
 			</div>
+
 		</div>
 
 	</nav>
 
-	<!-- Main -->
-
 	<main class="flex lay--justify-center">
+
 		<div class="width-control">
+
 			<div id="loading-message" class="flex">
 				<p class="label secondary">Loading... Sometimes this can take a while - still learning to code!</p>
 			</div>
@@ -57,10 +65,10 @@
 			<section id="playlists-container" class="grid lay--gap-large-xx">
 				<!-- Playlists will be added via JavaScript -->
 			</section>
-		</div>
-	</main>
 
-	<!-- Footer -->
+		</div>
+
+	</main>
 
 	<footer class="flex lay--justify-center">
 		<div class="flex lay--row lay--gap width-control">
@@ -74,41 +82,47 @@
 					since 2019 &copy;</p>
 			</div>
 
-
-
 		</div>
+
 	</footer>
 
-	<div id="overlay-background" style="display: none;" class="overlay hidden">
-		<div id="overlay" class="overlay-content">
+	<div id="overlay-background" class="overlay hidden">
+
+		<div id="overlay" class="overlay-content lay--column">
+
 			<div id="close-overlay" class="close-overlay"><span>&times;</span></div>
 
-			<h2 id="overlay-playlist-title" class="primary"></h2>
+			<div class="flex lay--column lay--gap lay--justify-left">
+				<h2 id="overlay-playlist-title" class="primary"></h2>
 
-			<div class="flex lay--row lay--gap lay--align-center">
-				<p id="overlay-playlist-tracks" class="label secondary"></p>
-				<p id="overlay-playlist-divider" class="label secondary">&#124;</p>
-				<p id="overlay-playlist-followers" class="label secondary"></p>
-			</div>
+				<div class="flex lay--row lay--gap-small-x lay--justify-left">
+					<p id="overlay-playlist-tracks" class="label secondary"></p>
+					<p id="overlay-playlist-divider" class="label secondary">&#124;</p>
+					<p id="overlay-playlist-followers" class="label secondary"></p>
+				</div>
 
-			<p id="overlay-playlist-description" class="label mid clamp-2"></p>
+				<p id="overlay-playlist-description" class="label mid clamp-2"></p>
 
-			<div class="row-large">
-				<a id="open-web" class="button" data-playlist-id="">Open in Spotify Web</a>
-				<a id="copy-url" class="button">Copy Link</a>
-			</div>
+				<div class="flex lay--row lay--gap lay--justify-left">
+					<a id="open-web" class="button" data-playlist-id="">Open in Spotify Web</a>
+					<a id="copy-url" class="button">Copy Link</a>
+				</div>
 
-			<div class="overlay-player-wrapper">
-				<iframe id="spotify-player" src="" allowtransparency="true" allowfullscreen
-					allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
+				<div class="overlay-player-wrapper">
+					<iframe id="spotify-player" src="" allowtransparency="true" allowfullscreen
+						allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
+				</div>
+
 			</div>
 
 		</div>
+
 	</div>
 
 	<div id="tooltip" class="tooltip-container"></div>
 
 	<script src="/js/app.js"></script>
+
 </body>
 
 </html>

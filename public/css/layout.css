@@ -101,9 +101,9 @@
 nav {
     position: sticky;
     top: 0px;
-    z-index: 2000;
     padding-top: var(--size-base);
     padding-bottom: var(--size-base);
+    z-index: 2500;
 }
 
 footer {
@@ -114,7 +114,7 @@ footer {
 /* PLAYLISTS */
 
 #playlists-container {
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
 }
 
 @media (max-width: 991px) {
@@ -138,31 +138,48 @@ footer {
 /* Overlay */
 
 .overlay {
+    background-color: rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    left: 0;
+    /* padding: var(--size-large-x); */
     position: fixed;
     top: 0;
-    left: 0;
     width: 100vw;
-    height: 100vh;
-    padding: var(--size-large-x);
-    background-color: rgba(0, 0, 0, 0.25);
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    z-index: 8000;
+    z-index: 5000;
 }
 
 .overlay-content {
-    position: relative;
-    height: fit-content;
-    background-color: var(--swatch-black);
-    padding: var(--size-large-xx);
-    border-radius: var(--size-small);
-    display: flex;
     flex: auto;
-    flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    background-color: var(--swatch-dark-grey);
+    border-radius: var(--size-small);
     gap: var(--size-small-xx);
-    flex-grow: 1;
+    width: auto;
+    height: auto;
+    padding: var(--size-large-xxxxxx);
+    margin: var(--size-large-xxxxxx);
+    position: relative;
+}
+
+/* Spotify Player */
+
+.overlay-player-wrapper {
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    margin-top: var(--size-base);
+    left: 0;
+    display: flex;
+}
+
+#spotify-player {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    top: 0;
+    left: 0;
 }

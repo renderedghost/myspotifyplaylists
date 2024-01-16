@@ -6,7 +6,8 @@
     --swatch-lightest-grey: #cbcbcb;
     --swatch-blue: #0000bf;
     --swatch-blue-dark: #00007e;
-    --swatch-cyan: #00FFFF;
+    --swatch-cyan: #00d5ff;
+    --swatch-yellow: hsl(39, 87%, 50%);
     --swatch-white: #FFFFFF;
 
     /* Gradients */

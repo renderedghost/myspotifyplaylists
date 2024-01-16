@@ -1,5 +1,5 @@
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 html {
@@ -23,7 +23,7 @@ body {
 }
 
 :focus {
-    outline: 2px solid var(--swatch-cyan);
+    outline: 2px solid var(--swatch-yellow);
     outline-offset: 2px;
 }
 

@@ -25,9 +25,10 @@ p {
 }
 
 .text-desc-playlist {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-extralight);
     font-size: var(--font-size-base);
     line-height: var(--font-height-base);
+    letter-spacing: 0.2px;
 }
 
 .clamp-1 {

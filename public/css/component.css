@@ -5,8 +5,8 @@ nav {
 
 footer {
     background-color: var(--swatch-black);
-    padding-top: var(--size-base);
-    padding-bottom: var(--size-base);
+    padding-top: var(--size-small);
+    padding-bottom: var(--size-small);
 }
 
 /* Link */
@@ -155,7 +155,8 @@ input::placeholder {
 
 .playlist {
     cursor: pointer;
-    margin-bottom: var(--size-small-x);
+    padding-bottom: var(--size-small);
+    border-radius: var(--size-small-x);
     transform: scale(1);
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
@@ -174,10 +175,14 @@ input::placeholder {
     transition: transform var(--transition-base) ease-in-out;
 }
 
+.playlist:focus {
+    outline-offset: 0.5rem;
+}
+
 .playlist-img {
     width: 100%;
     height: auto;
-    margin-bottom: var(--size-small-x);
+    margin-bottom: var(--size-small);
     border-radius: var(--size-small-x);
 }
 
@@ -220,25 +225,3 @@ input::placeholder {
     visibility: visible;
     opacity: 1;
 }
-
-/* Spotify Player */
-
-.overlay-player-wrapper {
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 36rem;
-    margin-top: var(--size-base);
-    left: 0;
-}
-
-#spotify-player {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    top: 0;
-    left: 0;
-}
-
-/* Navigation */

@@ -4,10 +4,10 @@ const searchInput = document.getElementById('search');
 const loadingMessage = document.getElementById('loading-message');
 const resetButton = document.getElementById('reset-button');
 const openWebButton = document.getElementById('open-web');
-const openAppButton = document.getElementById('open-app');
 const copyUrlButton = document.getElementById('copy-url');
 
-let playlists = [];
+let allFetchedPlaylists = [];
+let searchQuery = '';
 
 const toggleLoadingMessage = (show) => {
   loadingMessage.style.display = show ? 'block' : 'none';
@@ -16,8 +16,6 @@ const toggleLoadingMessage = (show) => {
 const updateResetButton = (search) => {
   resetButton.style.display = search !== '' ? 'inline-block' : 'none';
 };
-
-let allFetchedPlaylists = [];
 
 const fetchAllPlaylists = async (userId, offset = 0, fetchedPlaylists = []) => {
   try {
@@ -34,7 +32,8 @@ const fetchAllPlaylists = async (userId, offset = 0, fetchedPlaylists = []) => {
     fetchedPlaylists = fetchedPlaylists.concat(newPlaylists.items);
 
     if (newPlaylists.items.length === 50) {
-      return await fetchAllPlaylists(userId, offset + 50, fetchedPlaylists);
+      return await fetchAllPlaylists(userId, offset + 50,
+        fetchedPlaylists);
     }
 
     return fetchedPlaylists;
@@ -76,7 +75,35 @@ const fetchPlaylists = async (search = '') => {
   }
 };
 
+const handleArrowKeys = (event) => {
+  const focusedElement = document.activeElement;
+  const gridItems = Array.from(playlistsContainer.children);
+  const currentIndex = gridItems.indexOf(focusedElement);
 
+  let nextIndex;
+  switch (event.key) {
+    case 'ArrowUp':
+      nextIndex = currentIndex - 4; // Adjust this value based on your grid layout
+      break;
+    case 'ArrowDown':
+      nextIndex = currentIndex + 4; // Adjust this value based on your grid layout
+      break;
+    case 'ArrowLeft':
+      nextIndex = currentIndex - 1;
+      break;
+    case 'ArrowRight':
+      nextIndex = currentIndex + 1;
+      break;
+    default:
+      return;
+  }
+
+  if (nextIndex >= 0 && nextIndex < gridItems.length) {
+    gridItems[nextIndex].focus();
+  }
+
+  event.preventDefault(); // Prevent default scrolling behavior
+};
 
 const displayPlaylists = (playlists) => {
   while (playlistsContainer.firstChild) {
@@ -88,19 +115,22 @@ const displayPlaylists = (playlists) => {
   const counter = document.getElementById('playlist-counter');
   counter.textContent = `Showing ${playlists.length} playlists`;
 
-  playlists.forEach((playlist) => {
-    const playlistElement = document.createElement('div');
+  playlists.forEach((playlist, index) => {
+    const playlistElement = document.createElement('article');
     playlistElement.className = 'playlist flex lay--column lay--gap-small-xx';
+    // playlistElement.tabIndex = index === 0 ? 0 : -1; // Set tabindex here
     playlistElement.innerHTML = `
-    <img class="playlist-img" src="${playlist.images[0]?.url || ''}" alt="${playlist.name} cover art">
-    <h2 class="text-name-playlist clamp-1">${playlist.name}</h2>
-    <div class="flex lay--row lay--gap-small-x lay--align-center">
-      <p class="text-desc-playlist secondary">${(playlist.tracks?.total || 0)} songs</p>
-      <p class="text-desc-playlist secondary">&#124;</p>
-      <p class="text-desc-playlist secondary">${(playlist.followers?.total || 0)} followers</p>
-    </div>
-    <p class="text-desc-playlist secondary clamp-2">${playlist.description || ''}</p>
+      <img class="playlist-img" src="${playlist.images[0]?.url || ''}" alt="${playlist.name} cover art">
+      <h2 class="text-name-playlist clamp-1">${playlist.name}</h2>
+      <div class="flex lay--row lay--gap-small-x lay--align-center">
+        <p class="text-desc-playlist secondary">${(playlist.tracks?.total || 0)} songs</p>
+        <p class="text-desc-playlist secondary">&#124;</p>
+        <p class="text-desc-playlist secondary">${(playlist.followers?.total || 0)} followers</p>
+      </div>
+      <p class="text-desc-playlist secondary clamp-2">${playlist.description || ''}</p>
     `;
+
+    playlistElement.addEventListener('keydown', handleArrowKeys); // Attach event listener for keyboard navigation
 
     playlistsContainer.appendChild(playlistElement);
 
@@ -162,7 +192,6 @@ resetButton.addEventListener('click', () => {
 });
 
 let isLoading = false;
-let searchQuery = '';
 
 window.addEventListener('scroll', async () => {
   if (isLoading || (window.innerHeight + window.scrollY) < document.body.offsetHeight - 500) {
@@ -180,7 +209,6 @@ openWebButton.addEventListener('click', () => {
   const webUrl = `https://open.spotify.com/playlist/${playlistId}`;
   window.open(webUrl, '_blank');
 });
-
 
 copyUrlButton.addEventListener('click', () => {
   const player = document.getElementById('spotify-player');
