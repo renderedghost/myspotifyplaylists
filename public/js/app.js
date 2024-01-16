@@ -99,7 +99,7 @@ const displayPlaylists = (playlists) => {
       <p class="label secondary">&#124;</p>
       <p class="label secondary">${(playlist.followers?.total || 0)} followers</p>
     </div>
-    <p class="label mid clamp-2">${playlist.description || ''}</p>
+    <p class="label secondary clamp-2">${playlist.description || ''}</p>
     `;
 
     playlistsContainer.appendChild(playlistElement);
