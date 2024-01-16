@@ -1,4 +1,3 @@
-// EventHandlers.js
 import { DataFetcher } from './DataFetcher.js';
 import { UIManager } from './UIManager.js';
 

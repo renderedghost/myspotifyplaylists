@@ -1,4 +1,3 @@
-// UIManager.js
 export const UIManager = (() => {
     const playlistsContainer = document.getElementById('playlists-container');
     const loadingMessage = document.getElementById('loading-message');
