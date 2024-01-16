@@ -17,23 +17,28 @@
 		content="Welcome to my collection of weekly curated playlists. Whether you're looking to get your dance on, unwind with some mellow vibes, or explore some weirder musical corners, I've got something for you.">
 	<meta property="og:type" content="product">
 	<meta property="og:image" content="">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/css/tokens.css">
+	<link rel="stylesheet" href="/css/global.css">
+	<link rel="stylesheet" href="/css/typography.css">
+	<link rel="stylesheet" href="/css/layout.css">
+	<link rel="stylesheet" href="/css/component.css">
 </head>
 
-<body>
+<body class="flex lay--gap lay--column">
 	<!-- Nav -->
 
-	<nav>
-		<div class="section">
-			<div id="nav-brand">
-				<div class="nav-brand--group">
-					<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar" data-tooltip="Hi There! 👋">
-					<h1 class="nav-brand-name">Sound<wbr>Selections</h1>
-				</div>
+	<nav class="flex lay--justify-center">
+		<div class="flex lay--column lay--gap width-control">
+			<div class="flex lay--row lay--gap-small lay--align-center">
+				<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar"
+					data-tooltip="Welcome! I hope you find your new favourite thing 👋">
+				<h1 class="text-name-site">Sound<wbr>Selections</h1>
 			</div>
-			<div id="nav-search">
+			<div id="nav-search" class="flex">
 				<input type="text" id="search" placeholder="Find your favourite style...">
 			</div>
-			<div id="nav-counter">
+			<div class="flex lay--row lay--gap-small lay--align-center">
 				<span id="playlist-counter"></span>
 				<a id="reset-button" style="display: none;">Clear Results</a>
 			</div>
@@ -43,13 +48,13 @@
 
 	<!-- Main -->
 
-	<main>
-		<div class="section">
-			<div id="loading-message" class="label secondary">
+	<main class="flex lay--justify-center">
+		<div class="width-control">
+			<div id="loading-message" class="flex">
 				<p class="label secondary">Loading... Sometimes this can take a while - still learning to code!</p>
 			</div>
 
-			<section id="playlists-container">
+			<section id="playlists-container" class="grid lay--gap-large-xx">
 				<!-- Playlists will be added via JavaScript -->
 			</section>
 		</div>
@@ -57,30 +62,30 @@
 
 	<!-- Footer -->
 
-	<footer>
-		<div class="section">
-			<div id="nav-desc">
-				<div class="nav-brand--group">
-					<p class="nav-brand-desc">Curated Playlists by <a href="https://linktr.ee/barryprendergast"
-							target="_blank">Beere</a></p>
-					<p class="nav-brand-desc">|</p>
-					<p class="nav-brand-desc">&copy; 2023</p>
+	<footer class="flex lay--justify-center">
+		<div class="flex lay--row lay--gap width-control">
 
-				</div>
-				<div class="nav-brand--group">
-					<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">View on Spotify</a>
-				</div>
+			<div class="flex lay--row lay--gap-small lay--align-center">
+				<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">View on Spotify</a>
 			</div>
+
+			<div class="flex lay--row lay--gap-small lay--align-center">
+				<p>Weekly curated playlists by <a href="https://linktr.ee/barryprendergast" target="_blank">Beere</a>
+					since 2019 &copy;</p>
+			</div>
+
+
+
 		</div>
 	</footer>
 
-	<div id="overlay-background" class="overlay hidden">
+	<div id="overlay-background" style="display: none;" class="overlay hidden">
 		<div id="overlay" class="overlay-content">
 			<div id="close-overlay" class="close-overlay"><span>&times;</span></div>
 
 			<h2 id="overlay-playlist-title" class="primary"></h2>
 
-			<div class="row slim">
+			<div class="flex lay--row lay--gap lay--align-center">
 				<p id="overlay-playlist-tracks" class="label secondary"></p>
 				<p id="overlay-playlist-divider" class="label secondary">&#124;</p>
 				<p id="overlay-playlist-followers" class="label secondary"></p>

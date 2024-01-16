@@ -1,0 +1,168 @@
+/* Display */
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+/* Columns */
+
+.lay--column {
+    flex-direction: column;
+}
+
+.lay--row {
+    flex-direction: row;
+}
+
+/* Gap */
+
+.lay--gap-small-xx {
+    gap: var(--size-small-xx);
+}
+
+.lay--gap-small-x {
+    gap: var(--size-small-x);
+}
+
+.lay--gap-small {
+    gap: var(--size-small);
+}
+
+.lay--gap {
+    gap: var(--size-base);
+}
+
+.lay--gap-large {
+    gap: var(--size-large);
+}
+
+.lay--gap-large-xx {
+    gap: var(--size-large-xx);
+}
+
+/* Padding */
+
+.lay--pad-small {
+    padding: var(--size-small);
+}
+
+.lay--pad {
+    padding: var(--size-base);
+}
+
+.lay--pad-large {
+    padding: var(--size-large);
+}
+
+/* Justify */
+
+.lay--justify-center {
+    justify-content: center;
+}
+
+.lay--justify-left {
+    justify-content: left;
+}
+
+.lay--justify-right {
+    justify-content: right;
+}
+
+/* Align Items */
+
+.lay--align-stretch {
+    align-items: stretch
+}
+
+.lay--align-flex {
+    align-items: flex-start;
+}
+
+.lay--align-center {
+    align-items: center;
+}
+
+/* Width */
+
+.width-control {
+    width: 100%;
+    max-width: 1280px;
+}
+
+/* [!] Add responsive here! */
+
+/* OLD ——————————————————————————————————— */
+
+
+nav {
+    position: sticky;
+    top: 0px;
+    z-index: 2000;
+    padding-top: var(--size-base);
+    padding-bottom: var(--size-base);
+}
+
+footer {
+    position: sticky;
+    bottom: 0px;
+}
+
+/* PLAYLISTS */
+
+#playlists-container {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+@media (max-width: 991px) {
+    #playlists-container {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #playlists-container {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+}
+
+@media (max-width: 478px) {
+    #playlists-container {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+}
+
+/* Overlay */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: var(--size-large-x);
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    z-index: 8000;
+}
+
+.overlay-content {
+    position: relative;
+    height: fit-content;
+    background-color: var(--swatch-black);
+    padding: var(--size-large-xx);
+    border-radius: var(--size-small);
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--size-small-xx);
+    flex-grow: 1;
+}

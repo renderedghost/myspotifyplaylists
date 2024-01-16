@@ -90,16 +90,16 @@ const displayPlaylists = (playlists) => {
 
   playlists.forEach((playlist) => {
     const playlistElement = document.createElement('div');
-    playlistElement.className = 'playlist';
+    playlistElement.className = 'playlist flex lay--column lay--gap-small-xx';
     playlistElement.innerHTML = `
     <img class="playlist-img" src="${playlist.images[0]?.url || ''}" alt="${playlist.name} cover art">
-    <p class="label primary title clamp-1">${playlist.name}</p>
-    <div class="row slim">
-      <p class="label secondary">${(playlist.tracks?.total || 0)} songs</p>
-      <p class="label secondary">&#124;</p>
-      <p class="label secondary">${(playlist.followers?.total || 0)} followers</p>
+    <h2 class="text-name-playlist clamp-1">${playlist.name}</h2>
+    <div class="flex lay--row lay--gap-small-x lay--align-center">
+      <p class="text-desc-playlist secondary">${(playlist.tracks?.total || 0)} songs</p>
+      <p class="text-desc-playlist secondary">&#124;</p>
+      <p class="text-desc-playlist secondary">${(playlist.followers?.total || 0)} followers</p>
     </div>
-    <p class="label secondary clamp-2">${playlist.description || ''}</p>
+    <p class="text-desc-playlist secondary clamp-2">${playlist.description || ''}</p>
     `;
 
     playlistsContainer.appendChild(playlistElement);
