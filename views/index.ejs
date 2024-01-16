@@ -23,48 +23,53 @@
 	<!-- Nav -->
 
 	<nav>
-
-		<div id="nav-brand">
-			<div class="nav-brand--group">
-				<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar" data-tooltip="Hi There! 👋">
-				<h1 class="nav-brand-name">Sound<wbr>Selections</h1>
+		<div class="section">
+			<div id="nav-brand">
+				<div class="nav-brand--group">
+					<img class="avatar tooltip" src="/media/avatar.jpg" alt="Avatar" data-tooltip="Hi There! 👋">
+					<h1 class="nav-brand-name">Sound<wbr>Selections</h1>
+				</div>
 			</div>
-		</div>
-		<div id="nav-search">
-			<input type="text" id="search" placeholder="Search for names or styles...">
-		</div>
-		<div id="nav-counter">
-			<span id="playlist-counter"></span>
-			<a id="reset-button" style="display: none;">Clear Results</a>
+			<div id="nav-search">
+				<input type="text" id="search" placeholder="Find your favourite style...">
+			</div>
+			<div id="nav-counter">
+				<span id="playlist-counter"></span>
+				<a id="reset-button" style="display: none;">Clear Results</a>
+			</div>
 		</div>
 
 	</nav>
 
 	<!-- Main -->
+
 	<main>
+		<div class="section">
+			<div id="loading-message" class="label secondary">
+				<p class="label secondary">Loading... Sometimes this can take a while - still learning to code!</p>
+			</div>
 
-		<div id="loading-message" class="label secondary">
-			<p class="label secondary">Loading... Sometimes this can take a while - still learning to code!</p>
+			<section id="playlists-container">
+				<!-- Playlists will be added via JavaScript -->
+			</section>
 		</div>
-
-		<section id="playlists-container">
-			<!-- Playlists will be added via JavaScript -->
-		</section>
 	</main>
 
 	<!-- Footer -->
 
 	<footer>
-		<div id="nav-desc">
-			<div class="nav-brand--group">
-				<p class="nav-brand-desc">Curated Playlists by <a href="https://linktr.ee/barryprendergast"
-						target="_blank">Beere</a></p>
-				<p class="nav-brand-desc">|</p>
-				<p class="nav-brand-desc">&copy; 2023</p>
+		<div class="section">
+			<div id="nav-desc">
+				<div class="nav-brand--group">
+					<p class="nav-brand-desc">Curated Playlists by <a href="https://linktr.ee/barryprendergast"
+							target="_blank">Beere</a></p>
+					<p class="nav-brand-desc">|</p>
+					<p class="nav-brand-desc">&copy; 2023</p>
 
-			</div>
-			<div class="nav-brand--group">
-				<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">View on Spotify</a>
+				</div>
+				<div class="nav-brand--group">
+					<a class="button" href="https://open.spotify.com/user/111112791" target="_blank">View on Spotify</a>
+				</div>
 			</div>
 		</div>
 	</footer>

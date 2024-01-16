@@ -75,7 +75,7 @@
 /* End of Variables */
 
 :focus {
-  outline: 2px solid var(--swatch-white);
+  outline: 2px solid var(--swatch-cyan);
   outline-offset: 2px;
 }
 
@@ -109,10 +109,7 @@ nav,
 main,
 footer {
   display: flex;
-  padding: 0 var(--size-large-xxxxxxxx);
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--size-base);
+  justify-content: center;
 }
 
 @media (max-width: 991px) {
@@ -142,6 +139,19 @@ footer {
   }
 }
 
+nav {
+  padding-top: var(--size-base);
+  padding-bottom: var(--size-base);
+  /* background-color: var(--swatch-blue); */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 96, 1) 50%, rgba(0, 0, 191, 1) 100%);
+}
+
+nav {
+  position: sticky;
+  top: 0px;
+  z-index: 2000;
+}
+
 footer {
   background-color: var(--swatch-black);
   padding-top: var(--size-base);
@@ -151,6 +161,40 @@ footer {
 footer {
   position: sticky;
   bottom: 0px;
+}
+
+.section {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: var(--size-small);
+  flex-wrap: nowrap;
+  max-width: 1280px;
+  padding-left: var(--size-base);
+  padding-right: var(--size-base);
+}
+
+@media (max-width: 991px) {
+
+  .section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 478px) {
+
+  .section {
+    max-width: 100%;
+  }
 }
 
 /* TYPE */
@@ -249,7 +293,7 @@ p {
 
 a {
   font-weight: var(--font-weight-regular);
-  color: var(--swatch-white);
+  color: var(--swatch-lightest-grey);
   cursor: pointer;
   border-color: transparent;
   border-style: solid;
@@ -261,7 +305,8 @@ a {
 .button {
   padding: var(--size-small-x) var(--size-base);
   background-color: transparent;
-  border-color: var(--swatch-white);
+  border-color: var(--swatch-lightest-grey);
+  color: var(--swatch-lightest-grey);
   border-style: solid;
   border-width: 1px;
   border-radius: var(--size-small-xx);
@@ -278,14 +323,14 @@ a {
 
 a:hover,
 a:focus {
-  color: var(--swatch-cyan);
+  color: var(--swatch-white);
   transition: all var(--transition-fast) ease-in-out;
 }
 
 .button:hover,
 .button:focus {
-  color: var(--swatch-cyan);
-  border-color: var(--swatch-cyan);
+  color: var(--swatch-white);
+  border-color: var(--swatch-white);
   transition: all var(--transition-fast) ease-in-out;
 }
 
@@ -301,28 +346,7 @@ a:focus {
 
 /* Navigations */
 
-nav {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: var(--size-small);
-  flex-wrap: nowrap;
-  padding-top: var(--size-base);
-  padding-bottom: var(--size-base);
-}
 
-nav {
-  position: sticky;
-  top: 0px;
-  z-index: 2000;
-}
-
-nav {
-  /* background-color: var(--swatch-blue); */
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 96, 1) 50%, rgba(0, 0, 191, 1) 100%);
-}
 
 #nav-desc,
 #nav-brand,
@@ -345,7 +369,7 @@ nav {
   flex-grow: 1;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .nav-brand--group {
@@ -356,19 +380,17 @@ nav {
   gap: var(--size-small-x);
 }
 
-
-
-/* #nav-search::after {
+#search::after {
   content: '⮑ ENTER';
   position: absolute;
-  right: var(--size-large-x);
-  top: 50%;
-  transform: translateY(-50%);
+  right: 0;
+  transform: translatex(-7rem);
   pointer-events: none;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   color: var(--swatch-lightest-grey);
-} */
+  display: flex;
+}
 
 input::placeholder {
   color: var(--swatch-light-grey);
@@ -392,10 +414,11 @@ input::placeholder {
 #search:hover {
   color: var(--swatch-white);
   background-color: var(--swatch-black);
+  border: 1px solid var(--swatch-white);
 }
 
 #search:focus {
-  border: 1px solid var(--swatch-cyan);
+  border: 1px solid var(--swatch-white);
   background-color: var(--swatch-black);
 }
 
@@ -419,7 +442,7 @@ input::placeholder {
 
 #playlists-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   gap: var(--size-large-xx);
 }
 
@@ -451,7 +474,8 @@ input::placeholder {
   align-content: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: var(--size-small-xxx);
+  gap: var(--size-small-xx);
+  margin-bottom: var(--size-small-x);
   transform: scale(1);
   -moz-transform: scale(1);
   -webkit-transform: scale(1);
