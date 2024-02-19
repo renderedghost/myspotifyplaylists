@@ -124,25 +124,25 @@ input::placeholder {
     display: flex;
     flex-grow: 1;
     padding: var(--size-base) var(--size-large-x);
-    background-color: transparent;
+    background-color: var(--swatch-blue-dark);
     color: var(--swatch-white);
-    border: 1px solid var(--swatch-white);
+    border: 1px solid var(--swatch-blue);
     font-size: var(--font-size-statement);
     line-height: var(--font-height-statement);
     font-weight: var(--font-weight-light);
     border-radius: var(--size-small-xx);
-    transition: background-color var(--transition-base) ease-in;
+    transition: background-color var(--transition-fast) ease-in;
 }
 
 #search:hover {
     color: var(--swatch-white);
     background-color: var(--swatch-black);
-    border: 1px solid var(--swatch-white);
+    border: 1px solid var(--swatch-blue-light);
 }
 
 #search:focus {
     border: 1px solid var(--swatch-white);
-    background-color: var(--swatch-black);
+    /* background-color: var(--swatch-black); */
 }
 
 /* Counter */
